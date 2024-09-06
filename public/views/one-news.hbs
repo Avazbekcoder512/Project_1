@@ -17,7 +17,8 @@
                 <div class="navbar-nav mr-auto py-0">
                     <a href="/api" class="nav-item nav-link">Yangiliklar</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Turkumlar</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false">Turkumlar</a>
                         <div class="dropdown-menu rounded-0 m-0">
                             <a href="/api/local" class="dropdown-item">O'zbekiston</a>
                             <a href="/api/global" class="dropdown-item">Jahon</a>
@@ -30,9 +31,9 @@
                 </div>
 
                 {{#if token}}
-                    <a href="/api/add">
-                        <button class="addnews-button">Yangiliklar Qo'shish</button>
-                    </a>
+                <a href="/api/add">
+                    <button class="addnews-button">Yangiliklar Qo'shish</button>
+                </a>
                 {{/if}}
 
                 {{#if token}}
@@ -59,7 +60,7 @@
     <!-- Navbar End -->
 
     <!-- Card Start -->
- <style>
+     <style>
         /* Kontent konteyneri */
         .container {
             width: 90%;
@@ -71,19 +72,9 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Sarlavha */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 36px;
-            color: #333;
-        }
-
         /* Yangilik elementlari */
         .news-item {
+            position: relative;
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid #ddd;
@@ -117,22 +108,49 @@
             border-radius: 4px;
             text-decoration: none;
             cursor: pointer;
+            margin-right: 10px;
         }
 
         .btn:hover {
             background-color: #0056b3;
         }
+
+        .delete-button {
+            background-color: #dc3545;
+            line-height: 10px;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            position: absolute;
+            bottom: 10px; /* Pastki tomon */
+            right: 10px;  /* O'ng tomon */
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        form {
+            display: inline;
+        }
     </style>
-  <div class="container">
+    <div class="container">
         <!-- Yangilik elementi -->
         <div class="news-item">
             <img src={{news.image}} alt="Yangilik Rasm">
             <h2>{{news.title}}</h2>
             <p>{{news.content}}</p>
 
-        {{#if isAdmin}}
+            {{#if isAdmin}}
             <a href="/api/updatenews/{{news._id}}" class="btn">Tahrirlash</a>
+            <form action="/api/deletenews/{{news._id}}" method="post" style="display:inline; vertical-align: middle;">
+                <button class="delete-button" type="submit">O'chirish</button>
+            </form>
+            {{/if}}
         </div>
-        {{/if}}
+    </div>
 
 </body>
