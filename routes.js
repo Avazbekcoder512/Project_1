@@ -40,4 +40,7 @@ router
 .post("/updateprofile/:id", jwtAccessMiddlewarre, updateProfile)
 .post("/deleteuser/:id", jwtAccessMiddlewarre, roleAccessMiddleware(["ADMIN"]), deleteUser)
 
+.use((req, res, next) => {
+    res.status(400).render("404 page")
+  });
 module.exports = router;

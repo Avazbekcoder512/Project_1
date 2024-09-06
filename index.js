@@ -31,8 +31,9 @@ app.use('/api/css', express.static(path.join(__dirname, 'css')));
 
 app.use("/api", router);
 
+
 app.use((req, res, next) => {
-  res.status(404).render('404 page');
+  res.redirect('/api');
 });
 
 const PORT = 3000;
