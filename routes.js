@@ -1,4 +1,4 @@
-const { getAllUser, getAdminPage, deleteUser } = require("./controller/admin")
+const { getAllUser, deleteUser } = require("./controller/admin")
 const { addNews, updatedNews, deletedNews, getAllNews, addNewsPage, LatestNews, ErrorPage, getOneNews, localNews, globalNews, sportNews, texnologiyaNews, getUpdatedNews, getAuthorNews, BadRequest, ServerError } = require("./controller/news")
 const { register, login, getOneUser, registerPage, loginPage, Contact, logOut, userProfile, updateProfilePage, updateProfile } = require("./controller/user")
 const { jwtAccessMiddlewarre } = require("./middleware/jwt-access.middleware")
@@ -26,7 +26,6 @@ router
 .get("/texnologiya", texnologiyaNews)
 .get("/updatenews/:id", getUpdatedNews)
 .get("/authornews/:id", getAuthorNews)
-.get("/400", BadRequest)
 .get("/404", ErrorPage)
 .get("/500", ServerError)
 

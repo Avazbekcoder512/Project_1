@@ -436,21 +436,16 @@ exports.texnologiyaNews = async (req, res) => {
 
 exports.ErrorPage = async (req, res) => {
   const token = req.cookies.token;
-  res.status(404).render("404 page", {
+  return res.status(404).render("404 page", {
     token,
   });
 };
 
-exports.BadRequest = async (req, res) => {
-  const token = req.cookies.token
-  res.status(400).render("400", {
-    token
-  })
-}
+
 
 exports.ServerError = async (req, res) => {
   const token = req.cookies.token
-  res.status(500).render("500", {
+  return res.status(500).render("500", {
     token
   })
 }
