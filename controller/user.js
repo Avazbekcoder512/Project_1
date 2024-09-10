@@ -175,10 +175,12 @@ exports.getOneUser = async (req, res) => {
 
 exports.updateProfilePage = async (req, res) => {
   const userId = req.cookies.userId
+  const token = req.cookies.token
   const user = await userModel.findById(userId)
   res.render("update-profile", {
     user,
-    userId
+    userId,
+    token
   })
 }
 

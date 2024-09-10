@@ -147,11 +147,13 @@
                 {{/if}}
 
                 {{#if token}}
+                {{#if user}}
                 <div class="profile-icon">
-                    <a class="btn bg-warning rounded-circle ms-3" href="/api/profile/:id">
+                    <a class="btn bg-warning rounded-circle ms-3" href="/api/profile/{{userId}}">
                         <small class="fa fa-user"> </small>
                     </a>
                 </div>
+                {{/if}}
                 {{/if}}
 
             </div>
