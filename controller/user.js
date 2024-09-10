@@ -208,7 +208,8 @@ exports.updateProfile = async (req, res) => {
 }
 
 exports.Contact = async (req, res) => {
+  const token = req.cookies.token
   res.render("contact", {
-    token: true
+    token
   })
 }
