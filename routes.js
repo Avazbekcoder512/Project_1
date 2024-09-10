@@ -2,6 +2,7 @@ const { getAllUser, deleteUser } = require("./controller/admin")
 const { addNews, updatedNews, deletedNews, getAllNews, addNewsPage, LatestNews, ErrorPage, getOneNews, localNews, globalNews, sportNews, texnologiyaNews, getUpdatedNews, getAuthorNews, BadRequest, ServerError } = require("./controller/news")
 const { register, login, getOneUser, registerPage, loginPage, Contact, logOut, userProfile, updateProfilePage, updateProfile } = require("./controller/user")
 const { jwtAccessMiddlewarre } = require("./middleware/jwt-access.middleware")
+const { loginLimiter } = require("./middleware/loginLimiter")
 const { roleAccessMiddleware } = require("./middleware/role-access.midlleware")
 
 const router = require("express").Router()
@@ -11,7 +12,7 @@ router
 .get("/", getAllNews)
 .get("/news/:id", getOneNews)
 .get("/register", registerPage)
-.get("/login", loginPage)
+.get("/login", loginLimiter, loginPage)
 .get("/logout", logOut)
 .get("/add", addNewsPage)
 .get("/users", jwtAccessMiddlewarre, roleAccessMiddleware(["ADMIN"]), getAllUser)
@@ -40,6 +41,8 @@ router
 .post("/deleteuser/:id", jwtAccessMiddlewarre, roleAccessMiddleware(["ADMIN"]), deleteUser)
 
 .use((req, res, next) => {
-    res.status(400).render("404 page")
+    res.status(404).render("404 page")
+
+    next()
   });
 module.exports = router;
