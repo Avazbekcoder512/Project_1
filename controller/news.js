@@ -441,15 +441,6 @@ exports.ErrorPage = async (req, res) => {
   });
 };
 
-exports.limitError = async (req, res, err,) => {
-  if (err.status === 429) {
-    return res.status(429).redirect("/api/429", {
-      message: "Siz juda ko'p urinish qildingiz. Iltimos, 5 daqiqadan so'ng urinib ko'ring!."
-    })
-  }
-} 
-
-
 
 exports.ServerError = async (req, res) => {
   const token = req.cookies.token
